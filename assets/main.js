@@ -2,11 +2,8 @@ const list = document.querySelector(".list");
 const api = "https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json";
 
 window.addEventListener('load', e => {
-
     getCalendar();
-
 });
-
 
 async function getCalendar(){
 
@@ -14,7 +11,6 @@ async function getCalendar(){
 
     const json = await response.json();
 
-    console.log(json);
     let groups = json.groups;
     this.stadiums = json.stadiums;
     this.teams = json.teams;
@@ -29,8 +25,26 @@ async function getCalendar(){
 
     list.innerHTML = dom.join('\n');
 
-    // setTimeout(getCalendar, 5000);
+    setTimeout(getCalendar, 5000);
 
+}
+
+function buildGroup(group) {
+    return `
+
+        <div class="card">
+           <h2>${group.name}</h2>
+            ${buildMatches(group.matches).join('\n')}
+        </div>
+        
+    `;
+}
+
+function buildMatches(matches) {
+
+    return matches.map((match) => {
+        return buildSingleMatch(match);
+    })
 }
 
 function buildSingleMatch(match){
@@ -76,19 +90,4 @@ function getStadium(stadiumId) {
     return this.stadiums[stadiumId-1];
 }
 
-function buildMatches(matches) {
 
-    return matches.map((match) => {
-        return buildSingleMatch(match);
-    })
-}
-function buildGroup(group) {
-    return `
-
-        <div class="card">
-           <h2>${group.name}</h2>
-            ${buildMatches(group.matches).join('\n')}
-        </div>
-        
-    `;
-}
