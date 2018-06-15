@@ -4,7 +4,7 @@ const api = "https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/dat
 window.addEventListener('load', e => {
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js')
+        navigator.serviceWorker.register('./service-worker.js')
             .then(function(reg) {
                 console.log('Service Worker registration succeeded');
             })

@@ -16,9 +16,9 @@ handlers:
   static_dir: assets
   secure: always
 
-- url: /sw.js
-  static_files: sw.js
-  upload: sw.js
+- url: /service-worker.js
+  static_files: service-worker.js
+  upload: service-worker.js
   secure: always
 
 - url: /.*
