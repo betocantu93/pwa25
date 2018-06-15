@@ -2,7 +2,19 @@ const list = document.querySelector(".list");
 const api = "https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json";
 
 window.addEventListener('load', e => {
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then(function(reg) {
+                console.log('Service Worker registration succeeded');
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed with ' + error);
+            });
+    }
+
     getCalendar();
+
 });
 
 async function getCalendar(){
@@ -25,7 +37,7 @@ async function getCalendar(){
 
     list.innerHTML = dom.join('\n');
 
-    setTimeout(getCalendar, 5000);
+    // setTimeout(getCalendar, 5000);
 
 }
 
