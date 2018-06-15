@@ -1,0 +1,27 @@
+service: default
+runtime: php55
+api_version: 1
+threadsafe: yes
+
+instance_class: F1
+automatic_scaling:
+  min_idle_instances: automatic
+  max_idle_instances: automatic
+  min_pending_latency: automatic
+  max_pending_latency: 1s
+
+handlers:
+
+- url: /assets
+  static_dir: assets
+  secure: always
+
+- url: /sw.js
+  static_files: sw.js
+  upload: sw.js
+  secure: always
+
+- url: /.*
+  static_files: index.html
+  upload: index.html
+  secure: always
