@@ -37,7 +37,7 @@ async function getCalendar(){
 
     list.innerHTML = dom.join('\n');
 
-    // setTimeout(getCalendar, 5000);
+    setTimeout(getCalendar, 60000);
 
 }
 
